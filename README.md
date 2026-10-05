@@ -1,8 +1,8 @@
-# Certified Test Selection
+# Skipping Scenario Tests with Missed-Failure Guarantees for Automated Driving Systems
 
-Experiment code for scenario-based test selection with count-adaptive calibration and bounds on missed failures.
+Experiment code for scenario test skipping with adaptive calibration and missed-failure guarantees.
 
-The certificate controls `Pr(L > epsilon) <= delta` for a fixed library, where `L` is the fraction of all failing tests that are skipped. Scores are fixed before calibration. Stopping uses the observed pass/fail path. Calibration and every retained execution count toward total cost.
+The certificate controls `Pr(L > epsilon) <= delta` for a fixed test suite, where `L` is the fraction of all failing tests that are skipped. Scores are fixed before calibration. Stopping uses the observed pass/fail path. Calibration and every retained execution count toward total cost.
 
 ## Setup
 
@@ -26,7 +26,7 @@ python run_experiments.py road
 python run_experiments.py duration
 ```
 
-The paper settings use 500 paired calibration draws, three risk settings and a 30% calibration cap. `adaptive` runs EV-count, EV-score, Target-K, cap certification, checkpoints and paired binomial counterparts. `baselines` runs fixed-size, inverse-sampling, budget and subgroup comparisons. `road` integrates frozen HGB, ITS4SDC and DETOUR scores/orders. `duration` requires the adaptive outputs.
+The paper settings use 500 paired calibration draws, three risk settings and a 30% calibration cap. `adaptive` runs EV-count, EV-score, Target-K, Target-K + cap, checkpoints and paired binomial counterparts. `baselines` runs fixed-size, inverse-sampling, budget and subgroup comparisons. `road` integrates frozen HGB, ITS4SDC and DETOUR scores/orders. `duration` requires the adaptive outputs.
 
 Adaptive decisions are written to `adaptive_replication/results/`, summaries to its `summary/` subfolder. Baseline outputs are in `replication/results/`, road and duration outputs in `adaptive_replication/extension_results/`. The smoke run uses the separate ignored directory `validation/smoke/`.
 
